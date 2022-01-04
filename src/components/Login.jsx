@@ -37,8 +37,8 @@ const Login = () => {
                     onClick={renderProps.onClick}
                     disabled={renderProps.disabled}
                   >
-                    <ImGoogle3 className="mr-4 font-bold text-gray-600" />
-                    <p className="drop-shadow-xl text-sm font-bold text-gray-600">
+                    <ImGoogle3 className="mr-4 font-bold text-gray-700" />
+                    <p className="drop-shadow-xl text-sm font-bold text-gray-700">
                       Sign in with google
                     </p>
                   </button>
