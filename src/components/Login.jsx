@@ -1,7 +1,7 @@
 import React from 'react'
 import video from '../assets/video.mp4'
 import { SiPhotopea } from "react-icons/si";
-import {FcGoogle} from 'react-icons/fc'
+import { ImGoogle3 } from "react-icons/im";
 import GoogleLogin from "react-google-login";
 
 const Login = () => {
@@ -37,8 +37,10 @@ const Login = () => {
                     onClick={renderProps.onClick}
                     disabled={renderProps.disabled}
                   >
-                    <FcGoogle className="mr-4" /> 
-                    <p className="drop-shadow-xl text-sm font-bold text-gray-600">Sign in with google</p>
+                    <ImGoogle3 className="mr-4 font-bold text-gray-600" />
+                    <p className="drop-shadow-xl text-sm font-bold text-gray-600">
+                      Sign in with google
+                    </p>
                   </button>
                 )}
                 onSuccess={responseGoogle}
