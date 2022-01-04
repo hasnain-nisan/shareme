@@ -24,8 +24,8 @@ const Login = () => {
           />
           <div className="absolute flex flex-col items-center justify-center top-0 bottom-0 left-0 right-0 bg-blackOverlay">
             <div className="p-5 flex items-center">
-              <SiPhotopea className="text-blue-200 w-20 h-14" />
-              <p className="text-blue-200 text-3xl font-bold">Shareme</p>
+              <SiPhotopea className="text-purple-600 w-20 h-14" />
+              <p className="text-purple-600 text-3xl font-bold">Shareme</p>
             </div>
 
             <div className="shadow-2xl">
