@@ -7,7 +7,14 @@ import GoogleLogin from "react-google-login";
 const Login = () => {
 
     const responseGoogle = (response) => {
-      console.log(response);
+      localStorage.setItem('user', JSON.stringify(response.profileObj))
+      const {name, googleId, imageUrl} = response.profileObj
+      const doc = {
+        _id:googleId,
+        _type: 'user',
+        userName: name,
+        image: imageUrl
+      }
     };
 
     return (
@@ -30,7 +37,7 @@ const Login = () => {
 
             <div className="shadow-2xl">
               <GoogleLogin
-                clientId=""
+                clientId={process.env.REACT_APP_GOOGLE_API_TOKEN}
                 render={(renderProps) => (
                   <button
                     className="bg-blue-200 flex justify-center items-center p-3 rounded-lg cursor-pointer outline-none ml-2"
