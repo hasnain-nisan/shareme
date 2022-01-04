@@ -24,8 +24,8 @@ const Login = () => {
           />
           <div className="absolute flex flex-col items-center justify-center top-0 bottom-0 left-0 right-0 bg-blackOverlay">
             <div className="p-5 flex items-center">
-              <SiPhotopea className="text-white w-20 h-14" />
-              <p className="text-white text-3xl font-bold">Shareme</p>
+              <SiPhotopea className="text-blue-200 w-20 h-14" />
+              <p className="text-blue-200 text-3xl font-bold">Shareme</p>
             </div>
 
             <div className="shadow-2xl">
@@ -33,7 +33,7 @@ const Login = () => {
                 clientId=""
                 render={(renderProps) => (
                   <button
-                    className="bg-mainColor flex justify-center items-center p-3 rounded-lg cursor-pointer outline-none ml-2"
+                    className="bg-blue-200 flex justify-center items-center p-3 rounded-lg cursor-pointer outline-none ml-2"
                     onClick={renderProps.onClick}
                     disabled={renderProps.disabled}
                   >
