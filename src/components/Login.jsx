@@ -3,9 +3,11 @@ import video from '../assets/video.mp4'
 import { SiPhotopea } from "react-icons/si";
 import { ImGoogle2 } from "react-icons/im";
 import GoogleLogin from "react-google-login";
+import {client} from '../client'
+import {useNavigate} from 'react-router-dom'
 
 const Login = () => {
-
+    const navigate = useNavigate()
     const responseGoogle = (response) => {
       localStorage.setItem('user', JSON.stringify(response.profileObj))
       const {name, googleId, imageUrl} = response.profileObj
@@ -15,6 +17,10 @@ const Login = () => {
         userName: name,
         image: imageUrl
       }
+      client.createIfNotExists(doc)
+        .then(() => {
+          navigate('/', {replace: true})
+        })
     };
 
     return (
