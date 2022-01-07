@@ -5,8 +5,8 @@ import {userQuery} from '../utils/data'
 import {client} from '../client'
 import Pins from './Pins'
 import { SiPhotopea } from "react-icons/si";
-import {AiFillCloseCircle} from "react-icons/ai"
-import {BsMenuButtonWideFill} from "react-icons/bs"
+import {GrClose} from "react-icons/gr"
+import {TiThMenu} from "react-icons/ti"
 
 
 const Home = () => {
@@ -36,10 +36,10 @@ const Home = () => {
             </div>
             <div className="flex md:hidden flex-row">
                 <div className="p-3 w-full flex flex-row justify-between items-center shadow-md">
-                    <BsMenuButtonWideFill fontSize={33} className="cursor-pointer" onClick={() => setToggleSidebar(true)}/>
+                    <TiThMenu fontSize={30} className="cursor-pointer" onClick={() => setToggleSidebar(true)}/>
                     <Link to="/">
                         <div className="flex items-center">
-                            <SiPhotopea className="text-purple-600 w-20 h-8" />
+                            <SiPhotopea className="text-purple-600 w-6 h-6 mr-2" />
                             <p className="text-purple-600 text-xl font-bold">Shareme</p>
                         </div>
                     </Link>
@@ -51,7 +51,7 @@ const Home = () => {
                 {toggleSidebar && (
                     <div className="fixed w-4/5 bg-white h-screen overflow-y-auto shadow-md z-10 animate-slide-in">
                         <div className="absolute flex w-full justify-end items-center p-2">
-                            <AiFillCloseCircle fontSize={30} className="cursor-pointer" onClick={() => setToggleSidebar(false)}/>
+                            <GrClose fontSize={30} className="cursor-pointer" onClick={() => setToggleSidebar(false)}/>
                         </div>
                         <Sidebar user={user} closeToggle={setToggleSidebar}/>
                     </div>
