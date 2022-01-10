@@ -7,6 +7,7 @@ import Pins from './Pins'
 import { SiPhotopea } from "react-icons/si";
 import {GrClose} from "react-icons/gr"
 import {TiThMenu} from "react-icons/ti"
+import { fetchUser } from '../utils/fetchUser'
 
 
 const Home = () => {
@@ -15,7 +16,7 @@ const Home = () => {
     const [toggleSidebar, setToggleSidebar] = useState(false)
     const scrollRef = useRef(null)
 
-    const userInfo = localStorage.getItem('user') !== 'undefined' ? JSON.parse(localStorage.getItem('user')) : localStorage.clear()
+    const userInfo = fetchUser()
 
     useEffect(() => {
         const query = userQuery(userInfo?.googleId)

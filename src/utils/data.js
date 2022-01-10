@@ -19,7 +19,7 @@ export const searchQuery = (searchTerm) => {
         },
         save[]{
             _key,
-            posetBy->{
+            postedBy->{
                 _id,
                 userName,
                 image
@@ -40,7 +40,7 @@ export const feedQuery = `*[_type == 'pin'] | order(_createdAt desc){
     },
     save[]{
         _key,
-        posetBy->{
+        postedBy->{
             _id,
             userName,
             image
