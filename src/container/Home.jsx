@@ -1,9 +1,8 @@
 import React, {useState, useRef, useEffect} from 'react'
 import {Link, Route, Routes} from 'react-router-dom'
-import {CreatePin, Sidebar, UserProfile} from '../components'
+import {CreatePin, Feed, Navbar, PinDetails, Search, Sidebar, UserProfile} from '../components'
 import {userQuery} from '../utils/data'
 import {client} from '../client'
-import Pins from './Pins'
 import { SiPhotopea } from "react-icons/si";
 import {GrClose} from "react-icons/gr"
 import {TiThMenu} from "react-icons/ti"
@@ -15,6 +14,7 @@ const Home = () => {
     const [user, setUser] = useState(null)
     const [toggleSidebar, setToggleSidebar] = useState(false)
     const scrollRef = useRef(null)
+    const [searchTerm, setSearchTerm] = useState('')
 
     const userInfo = fetchUser()
 
@@ -72,15 +72,17 @@ const Home = () => {
           )}
         </div>
 
-        <div className="pb-2 flex-1 h-screen overflow-y-scroll" ref={scrollRef}>
+        <div className="px-2 md:px-5 pb-2 flex-1 h-screen overflow-y-scroll" ref={scrollRef}>
+          <div className="bg-gray-50">
+                <Navbar seachTerm={searchTerm} setSearchTerm={setSearchTerm} user={user}/>
+          </div>
           <Routes>
             <Route path="/user-profile/:userId" element={<UserProfile />} />
-            <Route path="/" element={<Pins user={user && user} />} />
-            <Route
-              path="/create-pin"
-              exact
-              element={<CreatePin user={user} />}
-            />
+            <Route path="/" element={<Feed user={user && user} />} />
+            <Route path="/category/:categoryId" element={<Feed />}/>
+            <Route path="/pin-details/:pinId" element={<PinDetails user={user}/>}/>
+            <Route path="/create-pin" element={<CreatePin user={user}/>}/>
+            <Route path="/search" element={<Search  seachTerm={searchTerm} setSearchTerm={setSearchTerm}/>}/>
           </Routes>
         </div>
       </div>
