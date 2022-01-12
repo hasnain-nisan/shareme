@@ -21,12 +21,14 @@ const Feed = () => {
                 .then((data) => {
                     setPins(data)
                     setLoading(false)
+                    // console.log(data)
                 })
         }else{
             client.fetch(feedQuery)
                 .then((data) => {
                     setPins(data)
                     setLoading(false)
+                    // console.log(data)
                 })
         }    
     }, [categoryId])

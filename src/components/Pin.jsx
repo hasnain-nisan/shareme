@@ -59,7 +59,7 @@ const Pin = (props) => {
             >
                 <img 
                     className="rounded-lg w-full shadow-md" 
-                    src={urlFor(pin.image.asset._ref).width(250).url()} 
+                    src={urlFor(pin.image?.asset?._ref).width(250).url()} 
                     alt="user-post"
                 />
                 {postHovered && (
