@@ -97,6 +97,46 @@ export const feedQuery = `*[_type == 'pin'] | order(_createdAt desc){
 }`
 
 export const pinDetailsQuery  = (pinId) => {
-  const query = `*[_type == 'pin' && _id == '${pinId}']`
+  const query = `*[_type == 'pin' && _id == '${pinId}']{
+    image,
+    _id,
+    destination,
+    postedBy->{
+        _id,
+        userName,
+        image
+    },
+    save[]{
+        _key,
+        postedBy->{
+            _id,
+            userName,
+            image
+        },
+    },
+}`
+  return query
+}
+
+
+export const pinDetailsMorePinQuery = (pin) => {
+  const query = `*[_type == 'pin' && category == '${pin.category}' && id != '${pin._id}']{
+      image,
+      _id,
+      destination,
+      postedBy->{
+          _id,
+          userName,
+          image
+      },
+      save[]{
+          _key,
+          postedBy->{
+              _id,
+              userName,
+              image
+          },
+      },
+  }`
   return query
 }
