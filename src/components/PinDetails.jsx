@@ -63,7 +63,7 @@ const PinDetails = ({user}) => {
                         </a>
                     </div>
                     <a 
-                        href={pinDetails?.destination}
+                        href={`/${pinDetails?.destination}`}
                         target="_blank"
                         rel="noreferrer"
                         className="text-sm bg-white flex items-center gap-2 text-blact font-bold p-2 pl-4 pr-4 rounded-full opacity-70 hover:opacity-100 hover:shadow-xl"
