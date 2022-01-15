@@ -106,7 +106,7 @@ const PinDetails = ({user}) => {
               <p className="mt-3">{pinDetails.about}</p>
               <Link
                 to={`/user-profile/${pinDetails.postedBy?._id}`}
-                className="flex gap-2 mt-5 items-center hover:shadow-xl rounded-lg"
+                className="flex gap-2 mt-5 items-center rounded-lg"
               >
                 <img
                   src={pinDetails.postedBy?.image}
