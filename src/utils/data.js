@@ -101,6 +101,7 @@ export const pinDetailsQuery  = (pinId) => {
     image,
     _id,
     destination,
+    category,
     postedBy->{
         _id,
         userName,
