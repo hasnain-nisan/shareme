@@ -159,3 +159,7 @@ export const pinDetailsMorePinQuery = (pin) => {
   }`;
   return query
 }
+
+export const categoryQuery = `*[_type == 'pin'] | order(_createdAt desc){
+  category,
+}`

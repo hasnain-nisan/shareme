@@ -1,19 +1,22 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import {NavLink, Link} from 'react-router-dom'
 import { SiPhotopea } from "react-icons/si";
 import {GoHome} from 'react-icons/go'
+import { client } from '../client';
+import { categoryQuery } from '../utils/data';
+import {multiDimensionalUnique} from '../utils/unique'
 
 const isNotActiveStyle = 'flex items-center px-5 gap-3 text-gray-500 hover:text-black transition-all duration-200 ease-in-out capitalize'
 const isActiveStyle = 'flex items-center px-5 gap-3 font-extrabold border-r-2 border-black transition-all duration-200 ease-in-out capitalize'
-const categories = [
-    {name:"Animals"},
-    {name:"Sport"},
-    {name:"Photography"},
-    {name:"Nature"},
-    {name:"Programming"},
-    {name:"Travel"},
-    {name:"Music"},
-]
+// const categories = [
+//     {name:"Animals"},
+//     {name:"Sport"},
+//     {name:"Photography"},
+//     {name:"Nature"},
+//     {name:"Programming"},
+//     {name:"Travel"},
+//     {name:"Music"},
+// ]
 
 
 const Sidebar = ({user, closeToggle}) => {
@@ -21,6 +24,17 @@ const Sidebar = ({user, closeToggle}) => {
     const handleCloseSidebar = () => {
         if(closeToggle) closeToggle(false)
     }
+
+    const [categories, setCategories] = useState(null)
+
+    useEffect(() => {
+        const query = categoryQuery
+        client.fetch(query)
+            .then((data) => {
+                let uniq = multiDimensionalUnique(data)
+                setCategories(uniq)
+            })
+    }, [])
 
     return (
         <div className="flex flex-col justify-between bg-white h-full overflow-y-scroll min-w-210 hide-scrollbar">
@@ -48,14 +62,14 @@ const Sidebar = ({user, closeToggle}) => {
                     <h3 className="mt-2 px-5 text-base 2xl:text-xl">
                         Discover Categories
                     </h3>
-                    {categories.slice(0, categories.length - 1).map((category) => (
+                    {categories?.slice(0, categories.length - 1).map((category) => (
                         <NavLink
                             to={`/category/${category.name}`}
                             className={({isActive}) => isActive ? isActiveStyle : isNotActiveStyle}
                             onClick={handleCloseSidebar}
-                            key={category.name}
+                            key={category.category}
                         >
-                            {category.name}
+                            {category.category}
                         </NavLink>
                     ))}
                 </div>
