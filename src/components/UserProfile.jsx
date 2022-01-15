@@ -7,7 +7,7 @@ import {client} from '../client'
 import {userCreatedPinsQuery, userQuery, userSavedPinsQuery} from '../utils/data'
 import MasonryLayout from './MasonryLayout'
 import Spinner from './Spinner'
-const randomImage = 'https://source.unsplash.com/random/1600*900/?programming,nature,sports,photography'
+const randomImage = 'https://source.unsplash.com/random/1600*900/?sport,football,mancity'
 
 
 const UserProfile = () => {
@@ -44,7 +44,7 @@ const UserProfile = () => {
                         <img 
                             src={user?.image} 
                             alt="user" 
-                            className="rounded-full w-24 h-24 -mt-10 shadow-xl object-cover"
+                            className="rounded-full w-40 h-40 -mt-20 shadow-xl object-cover p-1 bg-white"
                         />
                     </div>
                 </div>
