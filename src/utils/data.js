@@ -114,7 +114,16 @@ export const pinDetailsQuery  = (pinId) => {
             image
         },
     },
-}`
+    comments[]{
+      comment,
+      _key,
+      postedBy->{
+        _id,
+        userName,
+        image
+      },
+    }
+}`;
   return query
 }
 
@@ -137,6 +146,15 @@ export const pinDetailsMorePinQuery = (pin) => {
               image
           },
       },
-  }`
+      comments[]{
+        comment,
+        _key,
+        postedBy->{
+          _id,
+          userName,
+          image
+        },
+    }
+  }`;
   return query
 }
