@@ -7,6 +7,7 @@ import {client} from '../client'
 import {userCreatedPinsQuery, userQuery, userSavedPinsQuery} from '../utils/data'
 import MasonryLayout from './MasonryLayout'
 import Spinner from './Spinner'
+const randomImage = 'https://source.unsplash.com/random/1600*900/?programming,nature,sports,photography'
 
 
 const UserProfile = () => {
@@ -16,15 +17,38 @@ const UserProfile = () => {
     const [text, setText] = useState('Created')
     const [activeBtn, setActiveBtn] = useState('created')
     const navigate = useNavigate()
-    const {userId} = useParams
+    const {userId} = useParams()
+
+    useEffect(() => {
+        const query = userQuery(userId)
+        client.fetch(query)
+            .then((data) => {
+                setUser(data[0])
+            })
+    }, [userId])
 
     if(!user){
         return <Spinner message={"Loading profile..."}/>
     }
 
     return (
-        <div>
-            User Profile
+        <div className="relative pb-2 h-full justify-center items-center">
+            <div className="flex flex-col pb-5">
+                <div className="relative flex flex-col mb-7">
+                    <div className="flex flex-col justify-center items-center">
+                        <img 
+                            src={randomImage} 
+                            alt="banner" 
+                            className="w-full h-370 2xl:h-510 shadow-lg object-cover rounded-xl"
+                        />
+                        <img 
+                            src={user?.image} 
+                            alt="user" 
+                            className="rounded-full w-24 h-24 -mt-10 shadow-xl object-cover"
+                        />
+                    </div>
+                </div>
+            </div>
         </div>
     )
 }
