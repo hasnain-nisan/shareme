@@ -8,15 +8,7 @@ import {multiDimensionalUnique} from '../utils/unique'
 
 const isNotActiveStyle = 'flex items-center px-5 gap-3 text-gray-500 hover:text-black transition-all duration-200 ease-in-out capitalize'
 const isActiveStyle = 'flex items-center px-5 gap-3 font-extrabold border-r-2 border-black transition-all duration-200 ease-in-out capitalize'
-// const categories = [
-//     {name:"Animals"},
-//     {name:"Sport"},
-//     {name:"Photography"},
-//     {name:"Nature"},
-//     {name:"Programming"},
-//     {name:"Travel"},
-//     {name:"Music"},
-// ]
+
 
 
 const Sidebar = ({user, closeToggle}) => {
@@ -64,7 +56,7 @@ const Sidebar = ({user, closeToggle}) => {
                     </h3>
                     {categories?.slice(0, categories.length - 1).map((category) => (
                         <NavLink
-                            to={`/category/${category.name}`}
+                            to={`/category/${category.category}`}
                             className={({isActive}) => isActive ? isActiveStyle : isNotActiveStyle}
                             onClick={handleCloseSidebar}
                             key={category.category}
