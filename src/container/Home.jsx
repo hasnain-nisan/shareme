@@ -1,4 +1,4 @@
-import React, {useState, useRef, useEffect} from 'react'
+import React, {useState, useRef, useEffect, useContext} from 'react'
 import {Link, Route, Routes} from 'react-router-dom'
 import {CreatePin, Feed, Navbar, PinDetails, Search, Sidebar, UserProfile} from '../components'
 import {userQuery} from '../utils/data'
@@ -7,14 +7,17 @@ import { SiPhotopea } from "react-icons/si";
 import {GrClose} from "react-icons/gr"
 import {TiThMenu} from "react-icons/ti"
 import { fetchUser } from '../utils/fetchUser'
+import {SearchContext} from '../context/SearchContext'
 
 
 const Home = () => {
 
+    const searchContext = useContext(SearchContext);
     const [user, setUser] = useState(null)
     const [toggleSidebar, setToggleSidebar] = useState(false)
     const scrollRef = useRef(null)
-    const [searchTerm, setSearchTerm] = useState('')
+    const {searchTerm, setSearchTerm} = searchContext
+    // const [searchTerm, setSearchTerm] = useState('')
 
     const userInfo = fetchUser()
 
