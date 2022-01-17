@@ -71,113 +71,124 @@ const CreatePin = ({user}) => {
     }
 
     return (
-        <div className="flex flex-col justify-center items-center mt-5 lg:h-4/5">
-            {fields && (
-                <p className="text-red-500 mb-5 text-xl transition-all duration-150 ease-in">
-                    Please fill in all the fields.
-                </p>
-            )}
-            <div className="flex flex-col lg:flex-row justify-center items-center bg-white lg:p-5 p-3 lg:w-4/5 w-full rounded-lg">
-                <div className="bg-secondaryColor p-3 flex flex-0.7 w-full rounded-lg">
-                    <div className="flex justify-center items-center flex-col border-2 border-dotted border-gray-300 p-3 w-full h-420">
-                        {loading && <Spinner/>}
-                        {wrongImageType && <p>Wrong image type</p>}
-                        {!imageAsset ? (
-                            <label className="cursor-pointer">
-                                <div className="p-5 cursor-pointer border-2 border-dotted border-gray-300 flex flex-col items-center justify-center w-full">
-                                    <div className="flex flex-col items-center justify-center">
-                                        <p className="font-bold text-2xl">
-                                            <AiOutlineCloudUpload fontSize={40}/>
-                                        </p>
-                                        <p className="text-xl">Click to upload</p>
-                                    </div>
-                                    <p className="mt-32 text-gray-400">
-                                        Use high quality JPG, SVG, PNG, GIF less than 20mb
-                                    </p>
-                                </div>
-                                <input 
-                                    type="file" 
-                                    name="upload-image"
-                                    onChange={uploadImage}
-                                    className="w-0 h-0"
-                                />
-                            </label>
-                        ): (
-                            <div className="relative h-full">
-                                <img src={imageAsset?.url} alt="uploaded"  className="h-full w-full"/>
-                                <button
-                                    type="button"
-                                    className="absolute bottom-3 right-3 p-3 rounded-full bg-white text-xl cursor-pointer outline-none hover:shadow-md transition-all duration-500 ease-in-out"
-                                    onClick={() => setImageAsset(null)}
-                                >
-                                    <MdDelete/>
-                                </button>
-                            </div>
-                        )}
+      <div className="flex flex-col justify-center items-center mt-5 lg:h-4/5">
+        {fields && (
+          <p className="text-red-500 mb-5 text-xl transition-all duration-150 ease-in">
+            Please fill in all the fields.
+          </p>
+        )}
+        <div className="flex flex-col lg:flex-row justify-center items-center bg-white lg:p-5 p-3 lg:w-4/5 w-full rounded-lg">
+          <div className="bg-secondaryColor p-3 flex flex-0.7 w-full rounded-lg">
+            <div className="flex justify-center items-center flex-col border-2 border-dotted border-gray-300 p-3 w-full h-420">
+              {loading && <Spinner />}
+              {wrongImageType && <p>Wrong image type</p>}
+              {!imageAsset ? (
+                <label className="cursor-pointer">
+                  <div className="p-5 cursor-pointer border-2 border-dotted border-gray-300 flex flex-col items-center justify-center w-full">
+                    <div className="flex flex-col items-center justify-center">
+                      <p className="font-bold text-2xl">
+                        <AiOutlineCloudUpload fontSize={40} />
+                      </p>
+                      <p className="text-xl">Click to upload</p>
                     </div>
+                    <p className="mt-32 text-gray-400">
+                      Use high quality JPG, SVG, PNG, GIF less than 20mb
+                    </p>
+                  </div>
+                  <input
+                    type="file"
+                    name="upload-image"
+                    onChange={uploadImage}
+                    className="w-0 h-0"
+                  />
+                </label>
+              ) : (
+                <div className="relative h-full">
+                  <img
+                    src={imageAsset?.url}
+                    alt="uploaded"
+                    className="h-full w-full"
+                  />
+                  <button
+                    type="button"
+                    className="absolute bottom-3 right-3 p-3 rounded-full bg-white text-xl cursor-pointer outline-none hover:shadow-md transition-all duration-500 ease-in-out"
+                    onClick={() => setImageAsset(null)}
+                  >
+                    <MdDelete />
+                  </button>
                 </div>
+              )}
+            </div>
+          </div>
 
-                <div className="flex flex-1 flex-col gap-6 lg:pl-5 mt-5 w-full">
-                    <input
-                        type="text"
-                        value={title}
-                        onChange={(e) =>setTitle(e.target.value)}
-                        placeholder="Add your title here"
-                        className="outline-none text-2xl sm:text-3xl font-bold border-b-2 border-gray-200 p-2"
-                    />
-                    {user && (
-                        <div className="flex gap-2 my-2 items-center bg-white rounded-lg">
-                            <img 
-                                src={user.image} 
-                                alt="user-profile" 
-                                className="w-10 h-10 rounded-full"
-                            />
-                            <p className="font-bold">{user.userName}</p>
-                        </div>
-                    )}
-                    <input
-                        type="text"
-                        value={about}
-                        onChange={(e) =>setAbout(e.target.value)}
-                        placeholder="What is your pin about???"
-                        className="outline-none text-base sm:text-lg font-bold border-b-2 border-gray-200 p-2"
-                    />
-                    <input
-                        type="text"
-                        value={destination}
-                        onChange={(e) =>setDestination(e.target.value)}
-                        placeholder="Add a destination link"
-                        className="outline-none text-base sm:text-lg font-bold border-b-2 border-gray-200 p-2"
-                    />
-                    <div className="flex flex-col">
-                        <div>
-                            <p className="mb-2 font-semibold text-lg sm:text-xl">Choose pin category</p>
-                            <select
-                                onChange={(e) => setCategory(e.target.value)}
-                                className="ouline-none w-full text-base border-b-2 borer-gray-200 p-2 rounded-md cursor-pointer"
-                            >
-                                <option value="other" className="bg-white">Select Category</option> 
-                                {categories.map((category) => (
-                                    <option value={category.name} className="text-base border-0 outline-none capitalize bg-white text-black">
-                                        {category.name}
-                                    </option>
-                                ))}
-                            </select>
-                        </div>
-                        <div className="flex justify-center mt-5 items-center">
-                            <button
-                                type="button"
-                                onClick={savePin}
-                                className="bg-green-500 text-white font-bold p-2 rounded-full w-28 outline-none"
-                            >
-                                Save pin
-                            </button>
-                        </div>
-                    </div>
+          <div className="flex flex-1 flex-col gap-6 lg:pl-5 mt-5 w-full">
+            <input
+              type="text"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              placeholder="Add your title here"
+              className="outline-none text-2xl sm:text-3xl font-bold border-b-2 border-gray-200 p-2"
+            />
+            {user && (
+              <div className="flex gap-2 my-2 items-center bg-white rounded-lg">
+                <img
+                  src={user.image}
+                  alt="user-profile"
+                  className="w-10 h-10 rounded-full"
+                />
+                <p className="font-bold">{user.userName}</p>
+              </div>
+            )}
+            <input
+              type="text"
+              value={about}
+              onChange={(e) => setAbout(e.target.value)}
+              placeholder="What is your pin about???"
+              className="outline-none text-base sm:text-lg font-bold border-b-2 border-gray-200 p-2"
+            />
+            <input
+              type="text"
+              value={destination}
+              onChange={(e) => setDestination(e.target.value)}
+              placeholder="Add a destination link"
+              className="outline-none text-base sm:text-lg font-bold border-b-2 border-gray-200 p-2"
+            />
+            <input
+              type="text"
+              value={category?.toUpperCase()}
+              onChange={(e) => setCategory(e.target.value.toLowerCase())}
+              placeholder="Add a category"
+              className="outline-none text-base sm:text-lg font-bold border-b-2 border-gray-200 p-2"
+            />
+            <div className="flex flex-col">
+                {/* <div>
+                    <p className="mb-2 font-semibold text-lg sm:text-xl">Choose pin category</p>
+                    <select
+                        onChange={(e) => setCategory(e.target.value)}
+                        className="ouline-none w-full text-base border-b-2 borer-gray-200 p-2 rounded-md cursor-pointer"
+                    >
+                    <option value="other" className="bg-white">Select Category</option> 
+                        {categories.map((category) => (
+                            <option value={category.name} className="text-base border-0 outline-none capitalize bg-white text-black">
+                                {category.name}
+                            </option>
+                        ))}
+                    </select>
+                </div> */}
+                <div className="flex justify-center mt-5 items-center">
+                    <button
+                        type="button"
+                        onClick={savePin}
+                        className="bg-green-500 text-white font-bold p-2 rounded-full w-28 outline-none"
+                    >
+                        Save pin
+                    </button>
                 </div>
             </div>
+          </div>
         </div>
-    )
+      </div>
+    );
 }
 
 export default CreatePin

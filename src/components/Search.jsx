@@ -12,7 +12,7 @@ const Search = ({searchTerm, setSearchTerm}) => {
     useEffect(() => {
         if(searchTerm){
             setLoading(true)
-            const search = searchQuery(searchTerm)
+            const search = searchQuery(searchTerm.toLowerCase())
             client.fetch(search)
                 .then((data) => {
                     setPins(data);

@@ -77,7 +77,7 @@ const Home = () => {
 
         <div className="px-2 md:px-5 pb-2 flex-1 h-screen overflow-y-scroll" ref={scrollRef}>
           <div className="bg-gray-50">
-                <Navbar seachTerm={searchTerm} setSearchTerm={setSearchTerm} user={user}/>
+                <Navbar searchTerm={searchTerm} setSearchTerm={setSearchTerm} user={user}/>
           </div>
           <Routes>
             <Route path="/user-profile/:userId" element={<UserProfile />} />
@@ -85,7 +85,7 @@ const Home = () => {
             <Route path="/category/:categoryId" element={<Feed />}/>
             <Route path="/pin-details/:pinId" element={<PinDetails user={user}/>}/>
             <Route path="/create-pin" element={<CreatePin user={user}/>}/>
-            <Route path="/search" element={<Search  seachTerm={searchTerm} setSearchTerm={setSearchTerm}/>}/>
+            <Route path="/search" element={<Search  searchTerm={searchTerm} setSearchTerm={setSearchTerm}/>}/>
           </Routes>
         </div>
       </div>
