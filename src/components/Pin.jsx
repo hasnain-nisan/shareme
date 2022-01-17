@@ -15,7 +15,7 @@ const Pin = (props) => {
 
     const user = fetchUser()
 
-    const alreadySaved = !!(pin.save?.filter((item) => item.postedBy?._id === user.googleId))?.length
+    const alreadySaved = !!(pin.save?.filter((item) => item.postedBy?._id === user?.googleId))?.length
     // expalanation
     // 1, [2,4,1] ->filter func -> [1].length -> 1 -> !1 -> false -> !false -> true
     // 5, [1,2,3] ->filter func -> [].length -> 0 -> !0 -> true -> !true -> false
@@ -27,10 +27,10 @@ const Pin = (props) => {
                 .setIfMissing({ save: [] })
                 .insert('after', 'save[-1]', [{
                     _key: uuidv4(),
-                    userId: user.googleId,
+                    userId: user?.googleId,
                     postedBy: {
                         _type: 'postedBy',
-                        _ref: user.googleId
+                        _ref: user?.googleId
                     }
                 }])
                 .commit()
@@ -108,7 +108,7 @@ const Pin = (props) => {
                                     {pin.destination.length > 15 ? `${pin.destination.slice(0, 15)}...` : pin.destination}
                                 </a>
                             )}
-                            {pin.postedBy?._id === user.googleId && (
+                            {pin.postedBy?._id === user?.googleId && (
                                 <button
                                     type="button"
                                     className="bg-white w-9 h-9 rounded-full flex items-center justify-center text-dark text-xl opacity-75 hover:opacity-100 hover:shadow-md outline-none"
